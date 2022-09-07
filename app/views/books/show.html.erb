@@ -1,0 +1,5 @@
+<p>Book was successfully created.</p>
+<p>Title:<%=  @list.title %></p>
+<p>Body:<%=  @list.body %></p>
+<%= link_to "Edit", edit_list_path(@list.id) %>
+<%= link_to "Back", "/books" %>

@@ -1,29 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>WebCampBackendNew</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-<body>
     <p id="notice"></p>
 
 <h1>Books</h1>
-
-<%= @lists.each do |list| %>
-
-<p>Title</p>
-<span><% list.title %></span>
-
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th coltd="3"></th>
+    </tr>
+  </thead>
+<tbody>
+<% @lists.each do |list| %>
+<tr>
+<td><%= list.title %></td>
+<td><%= list.body %></td>
+<td><%= link_to "Show", "/books/#{list.id}" %></td>
+<td><%= link_to "Edit", "/books/#{list.id}/edit" %></td>
+<td><%= link_to "Destroy", destroy_list_path(list), method: :delete, "data-confirm" => "Are you sure?" %></td>
+</tr>
 <% end %>
-
+</tbody>
+</table>
 <h2>New book</h2>
-<%= form_with model: @list do |f| %>
+<%= form_with model: @list,url: books_path do |f| %>
   <h4>Title</h4>
   <%= f.text_field :title %>
   <h4>Body</h4>
@@ -31,7 +30,3 @@
   <br>
   <%= f.submit 'Create Book' %>
 <% end %>
-
-<%= yield %>
-</body>
-</html>
