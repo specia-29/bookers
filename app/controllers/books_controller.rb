@@ -1,8 +1,11 @@
 class BooksController < ApplicationController
   def create
     @lists = List.new(list_params)
-    @lists.save
-    redirect_to "/books/#{@lists.id}"
+    if @lists.save
+     redirect_to "/books/#{@lists.id}"
+    else
+      render :index
+    end
   end
 
   def index
